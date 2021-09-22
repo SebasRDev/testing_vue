@@ -3,8 +3,8 @@
   <p data-testid="counter"> {{ counter }} </p>
   <p> {{ counter }} <sup>2</sup> = {{ squareCounter }} </p>
   <div class="buttons__container">
-    <button @click="decreaseCounter()" data-testid="decreaseBtn">-1</button>
-    <button @click="increaseCounter()" data-testid="increaseBtn">+1</button>
+    <button @click="decreaseCounter()">-1</button>
+    <button @click="increaseCounter()">+1</button>
   </div>
 </template>
 

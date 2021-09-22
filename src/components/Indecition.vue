@@ -36,14 +36,19 @@ export default {
         no: 'No!',
         maybe: 'Tal vez!'
       }
-      this.answer = 'Pensando...'
+      try { 
+        this.answer = 'Pensando...'
 
-      const {answer, image} = await fetch('https://yesno.wtf/api')
-                                    .then(response => response.json())
+        const {answer, image} = await fetch('https://yesno.wtf/api')
+                                      .then(response => response.json())
 
-      this.img = image
-      this.answer = respuestas[answer]
-      this.isValidQuestion = true
+        this.img = image
+        this.answer = respuestas[answer]
+        this.isValidQuestion = true
+      } catch (error) {
+        this.answer = 'No se pudo cargar del API'
+        this.img = null
+      }  
     }
   },
   watch:{

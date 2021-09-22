@@ -33,35 +33,36 @@ describe('Counter Component', ()=>{
   })
   
   test('Should increment counter value by one, and decrement by one twice', async ()=>{
-    const increment = wrapper.find('[data-testid="increaseBtn"]')
-    const decrement = wrapper.find('[data-testid="decreaseBtn"]')
+    const [decreaseBtn, increaseBtn] = wrapper.findAll('button')
     
-    await increment.trigger('click')
-    await increment.trigger('click')
-    await increment.trigger('click')
-    await decrement.trigger('click')
-    await decrement.trigger('click')
+    await increaseBtn.trigger('click')
+    await increaseBtn.trigger('click')
+    await increaseBtn.trigger('click')
+    await decreaseBtn.trigger('click')
+    await decreaseBtn.trigger('click')
     
     const value = wrapper.find('[data-testid="counter"]').text()
     expect( value ).toBe('101')
   })
 
-  test('Should read start default value', ()=>{
+  test('should be the start prop default value', () => {
+   
     const { start } = wrapper.props()
-    const value = wrapper.find('[data-testid="counter"]').text()
+    const value =  wrapper.find('[data-testid="counter"]').text()
 
-    expect( Number(value)).toBe(start)
+    expect( Number(value) ).toBe(start)
+
   })
 
-  test('Should show custom title', ()=>{
-    const title = 'Hola Mundo'
-    const wrapper = shallowMount( Counter,{
-      props: { 
-        title,
-        start: '5'
-      }
-    })
 
-    expect( wrapper.find('h2').text() ).toBe( title )
+  test('should show title prop', () => {
+    const title = 'Hola Mundo!!'
+    const wrapper = shallowMount( Counter,{
+      props: {
+        title
+      } 
+    });
+
+    expect( wrapper.find('h2').text() ).toBe(title);
   })
 })
